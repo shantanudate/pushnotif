@@ -29,7 +29,7 @@ self.addEventListener("install", async () => {
   // This will be called only once when the service worker is installed for first time.
   try {
     const applicationServerKey = urlB64ToUint8Array(
-      "BGWuux8Z6nqqlKaHB4agadTRHi9MXPFfi64KWS1saEZ2sgbRsmhZtvdxUyPuTYhoiStjnq9UuWAapkU8O64BF3A"
+      "BGTR6R1CdM6jEQSbFS8jTzJTOvSnm9EWYHDO6niffGl_G_wbxSzMnCoeSFTC9J_JV5e1vz_bF-if8KVqFiy4oGM"
     );
     const options = { applicationServerKey, userVisibleOnly: true };
     const subscription = await self.registration.pushManager.subscribe(options);
@@ -52,7 +52,7 @@ self.addEventListener('push', function(event) {
 
 const showLocalNotification = (title, body, swRegistration) => {
   const options = {
-    icon:'/notif/logo_192x192.png',
+    icon:'icon-messages.png',
     body,
     // here you can add more properties like icon, image, vibrate, etc.
   }

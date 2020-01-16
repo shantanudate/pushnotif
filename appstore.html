@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>OBDX AppStore</title>
+      <style type="text/css">
+         body {
+         background-color: #005a5a;
+         }
+         * {
+         padding: 0;
+         margin: 0;
+         }
+         .container {
+         position: relative;
+         background-color: #005a5a;
+         clear: both;
+         }
+         .mainHeader {
+         position: relative;
+         margin-top:2%;
+         width: 100%;
+         height: 200px;
+         background-color: #000000;
+         }
+         .headerText {
+         position: relative;
+         float: right;
+         font-size: 350%;
+         margin-right: 3%;
+         margin-top: 55px;
+         text-align:right;
+         color: #ff9900;
+         font-family: Agency FB;
+         }
+         .projTiles {
+         position: relative;
+         margin-left:5%;
+         width: 90%;
+         height: 150px;
+         background-color: #ff9900;
+         }
+         .projText {
+         position: relative;
+         float: right;
+         font-size: 300%;
+         margin-right: 3%;
+         margin-top: 40px;
+         font-family: Agency FB;
+         }
+         .playButton {
+         position: relative;
+         margin-top: 35px;
+         margin-left: 15%;
+         height: 80px;
+         width: 80px;
+         cursor: pointer;
+         transition: all .6s;
+         }
+         .quickLink{
+         position: absolute;
+         margin-top: -150px;
+         height: 100%;
+         width: 90%;
+         margin-left: -70%;
+         height: 150px;
+         transition: all .5s;
+         }
+         .icons{
+         position: relative;
+         margin-top: 35px;
+         margin-right: 15%;
+         height: 66px;
+         width: 66px;
+         cursor: pointer;
+         float: right;
+         }
+         .iconContainer {
+         position: relative;
+         margin-left: 1%;
+         height: 100%;
+         width: 93px;
+         float: left;
+         text-align: center;
+         color:#ffffff;
+         font-size:110%;
+         font-family: Agency FB;
+         }
+         .appContainer{
+         position:relative;
+         margin-left:5%;
+         width:90%;
+         background-color:#ff9900;
+         display:none;
+         }
+         .appContainerAndroid{
+         position:relative;
+         margin-left:5%;
+         width:90%;
+         height : 290px;
+         background: #ff8a00;
+         display:none;
+         }
+         .step {
+         position: relative;
+         background: #ff8a00;
+         margin-bottom: 3px;
+         height: 180px;
+         }
+         .stepContainer{
+         position: relative;
+         margin-right: 8%;
+         height: 100%;
+         width: 70px;
+         float: right;
+         text-align: center;
+         color:#ffffff;
+         font-size:80%;
+         font-weight:bold;
+         font-family: Agency FB;
+         }
+         .stepText{
+         position: absolute;
+         margin-left: 3%;
+         margin-top: 40px;
+         font-size: 180%;
+         font-family: Agency FB;
+         font-weight:bold;
+         }
+         .stepImage {
+         position:relative;
+         float:right;
+         height:60px;
+         width=60px;
+         margin-top:25px;
+         margin-right:5px;
+         }
+      </style>
+   </head>
+   <script type="text/javascript">
+      var lastOpenTab="none";
+      
+      function window_size() {
+      	var width = window.innerWidth;
+      	var height = window.innerHeight;
+      // Sizing of Main Header
+      	document.getElementById("homeContainer").style.width=width+'px';
+      //	document.getElementById("container").style.height=height+'px';
+      }
+      function openQL(projname) {
+      	var pname = new RegExp( projname, 'g' );
+      	if (document.getElementById('subContainer'+projname).style.visibility=='hidden') {
+      		document.getElementById('subtab'+projname).style.marginLeft=5+'%';
+      		document.getElementById('playButton'+projname).style.transform = "rotate(180deg)";
+      		/* Opera, Chrome, and Safari */
+      		document.getElementById('playButton'+projname).style.WebkitTransform = "rotate(180deg)";
+      		/* IE 9 */
+      		document.getElementById('playButton'+projname).style.msTransform = "rotate(180deg)";
+      		document.getElementById('subContainer'+projname).style.visibility='visible';
+      		flagname = "Y";
+      	}else if(lastOpenTab.match(pname)){
+      		document.getElementById(lastOpenTab).style.display='none';
+      		document.getElementById('cont'+lastOpenTab).style.background='transparent';
+      		document.getElementById('subtab'+projname).style.marginLeft=-70+'%';
+      		document.getElementById('subContainer'+projname).style.visibility='hidden';
+      		document.getElementById('playButton'+projname).style.transform = "rotate(360deg)";
+      		/* Opera, Chrome, and Safari */
+      		document.getElementById('playButton'+projname).style.WebkitTransform = "rotate(360deg)";
+      		/* IE 9 */
+      		document.getElementById('playButton'+projname).style.msTransform = "rotate(360deg)";
+      		flagname = "N";
+      	}else{
+      		document.getElementById('subtab'+projname).style.marginLeft=-70+'%';
+      		document.getElementById('subContainer'+projname).style.visibility='hidden';
+      		document.getElementById('playButton'+projname).style.transform = "rotate(360deg)";
+      		/* Opera, Chrome, and Safari */
+      		document.getElementById('playButton'+projname).style.WebkitTransform = "rotate(360deg)";
+      		/* IE 9 */
+      		document.getElementById('playButton'+projname).style.msTransform = "rotate(360deg)";
+      		flagname = "N";
+      	}
+      }
+      function openTab(appType){
+      	if (document.getElementById(appType).style.display=='block'){
+      		document.getElementById(appType).style.display='none';
+      		document.getElementById('cont'+appType).style.background='transparent';
+      	}else if(lastOpenTab=="none"){			
+      		document.getElementById(appType).style.display='block';
+      		document.getElementById('cont'+appType).style.backgroundColor='#ff8a00';
+      		lastOpenTab=appType;
+      	}
+      	else{
+      		document.getElementById(lastOpenTab).style.display='none';
+      		document.getElementById('cont'+lastOpenTab).style.background='transparent';		
+      		document.getElementById(appType).style.display='block';
+      		document.getElementById('cont'+appType).style.backgroundColor='#ff8a00';
+      		lastOpenTab=appType;			
+      	}
+      }	
+   </script>
+   <body onresize="window_size()">
+      <div id="homeContainer" class="container">
+         <div class="mainHeader">
+            <div class="headerText">
+               <b>OBDX MOBILE APPS</b>
+               <div style="color:#ffffff;font-size:50%">Mobile Applications for <span style="color:red">Oracle</span> Banking Digital Experience</div>
+            </div>
+         </div>
+         
+		  <!-- iOS Certs & Doc -->
+         <!--div id="Clip1" style="margin-top:20px;">
+            <div class="projTiles">
+               <div class="projText">
+                  <div>iOS Certs & Doc</div>
+                  <div style="color:#ffffff;font-size:30%;float:right"><i></i></div>
+               </div>
+            </div>
+            <div id="subtabClip1" class="quickLink">
+               <div style="background-color:#ff9900;height:100%;width:16%;float:right"><img src="./images/play.png" id="playButtonClip1" class="playButton" onclick="openQL('Clip1')"/>
+               </div>
+               <div id="subContainerClip1" style="background-color:#ff9900;height:100%;width:84%;visibility:hidden">
+                  <div class="iconContainer" id="contiosClip" style="margin-left:20%"><img src="./images/ios.png" class="icons" onclick="openTab('ios1')"/>&nbsp;ios&nbsp;</div>
+               </div>
+            </div>
+            <div id="ios1" class="appContainer">
+               <div class="step">
+                  <div class="stepText">Installation Doc</div>
+                  <div class="stepContainer" style="margin-right:8%">
+                     <a href="./projects/appinstall182.pdf"><img style="margin-top:20%" border="0" alt="iOS" src="./images/download.jpg" width="60" height="60" target="_blank"></a>
+                  </div>
+               </div>
+               <div class="step">
+                  <div class="stepText">SSL Certificate</div>
+                  <div class="stepContainer" style="margin-right:8%"><a href="https://ofss3121275.in.oracle.com/projects/CA/rootCA.pem"><img src="./images/clip.png" class="stepImage"/></a>Certificate</div>
+               </div>
+			 </div>
+         </div-->
+
+	  <!-- OBDX 192 open -->
+         <div id="Clip192" style="margin-top:20px;">
+            <div class="projTiles">
+               <div class="projText">
+                  <div>OBDX 19.2</div>
+                  <div style="color:#ffffff;font-size:30%;float:right"><i></i></div>
+               </div>
+            </div>
+            <div id="subtabClip192" class="quickLink">
+               <div style="background-color:#ff9900;height:100%;width:16%;float:right"><img src="./images/play.png" id="playButtonClip192" class="playButton" onclick="openQL('Clip192')"/>
+               </div>
+               <div id="subContainerClip192" style="background-color:#ff9900;height:100%;width:84%;visibility:hidden">
+                  <div class="iconContainer" id="contiosClip" style="margin-left:20%"><img src="./images/ios.png" class="icons" onclick="openTab('iosClip192')"/>&nbsp;ios&nbsp;</div>
+                  <div class="iconContainer" id="contandroidClip"><img src="./images/android.png" class="icons" onclick="openTab('androidClip192')"/>android</div>
+               </div>
+            </div>
+            <div id="iosClip192" class="appContainer">
+               <div class="step">
+                  <div class="stepText">iOS - Ravello <br> mumaa012:18443</div>
+                  <div class="stepContainer">
+                     <a href="itms-services://?action=download-manifest&url=https://oraclefcdbmobiledev.github.io/futurabank/OBDX192/manifest.plist">
+                     <img src="./images/logo_128x128.png" class="stepImage"/></a>ZigBank-Service
+                  </div>
+                  <div class="stepContainer">
+                     <a href="itms-services://?action=download-manifest&url=https://oraclefcdbmobiledev.github.io/futurabank/OBDX192/auth_manifest.plist">
+                     <img src="./images/logo_authenticator.png" class="stepImage"/></a>ZigBank-Authenticator
+                  </div>
+               </div>
+
+			</div>
+            <div id="androidClip192" class="appContainer">
+               <div class="step">
+                  <div class="stepText">Android - NONOAM <br> mum00aoo:13003</div>
+                  <div class="stepContainer"><a href=
+                     "/projects/OBDX192/android/android-release.apk">
+                     <img src="./images/logo_128x128.png" class="stepImage"/></a>ZigBank-Service
+                  </div>
+                  <div class="stepContainer"><a href=
+                     "/projects/OBDX192/android/authenticator-release.apk">
+                     <img src="./images/logo_authenticator.png" class="stepImage"/></a>ZigBank-Authenticator
+                  </div>
+                  <div class="stepContainer"><a href=
+                     "/projects/OBDX192/android/obdxwear-release.apk">
+                     <img src="./images/logo_128x128.png" class="stepImage"/></a>OBDX-Wear
+                  </div>
+               </div>
+			   </div>
+            </div>
+         
+         <!-- OBDX 192 closed -->
+		 
+      </div>
+   </body>
+</html>
